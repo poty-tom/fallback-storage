@@ -1,0 +1,12 @@
+services:
+  garage:
+    build: ./docker/garage
+    environment:
+      - GARAGE_RPC_SECRET=${GARAGE_RPC_SECRET}
+    ports:
+      - "3900:3900" # S3
+      - "3901:3901" # RPC
+    volumes:
+      - ./docker/garage/toml/garage.toml:/etc/garage.toml:ro
+      - ./docker/garage/data/meta:/var/lib/garage/meta
+      - ./docker/garage/data/data:/var/lib/garage/data
